@@ -32,44 +32,41 @@ public class CarApp2 {
 
         do {
             //setup columns to display information
-            System.out.println("\n\n\nCurrent Inventory:");
-            System.out.printf("\n\n%-2s %-12s%-12s%-12s%-18s%-18s\n", "#", "Make", "Model", "Year", "Price", "Mileage(Used Cars)");
+            System.out.println("\nCurrent Inventory:");
+            System.out.printf("\n%-2s %-12s%-12s%-12s%-18s%-18s\n", "#", "Make", "Model", "Year", "Price", "Mileage(Used Cars)");
             System.out.printf("%-2s %-12s%-12s%-12s%-18s%-18s\n", "==", "==========", "==========", "==========", "==============", "==================");
 
             for (Car2 x : carArrayList) {
                 listNum = (carArrayList.indexOf(x) + 1);
                 System.out.print(listNum + ". ");
                 System.out.println(x);
-
             }
             System.out.println("\n" + (listNum + 1) + ". Quit");
 
             System.out.print("\nWhich car would you like:  ");
-            selection = (scnr.nextInt() - 1);
-            System.out.println("Selection--"+selection);
-            System.out.println((listNum + 1));
-            if (selection >= 0 && selection < (listNum + 1)) {
-                System.out.print("\n\n   ");
+            selection = (scnr.nextInt());
+            selection = selection -1;
+
+             if ((selection > 0) && (selection < (listNum))) {
+
                 System.out.print(carArrayList.get(selection));
 
-                System.out.println("\nWould you like to buy this car? (y/n)");
-                scnr.next();
+                System.out.println("\n\nWould you like to buy this car? (y/n)");
+                scnr.nextLine();
                 buyCar = scnr.nextLine();
 
-
                 if (buyCar.equalsIgnoreCase("y")) {
+                     carArrayList.remove(selection );
+                     System.out.println("Excellent! Our finance department will be in touch shortly.");
+                     selection = 0;
+                 }
+             }
+             if (selection >= (listNum)){
 
-                    carArrayList.remove(selection - 1);
-                    System.out.println("Excellent! Our finance department will be in touch shortly.");
-                    selection = 0;
-                }
+                loop = false;
+
             }
-
-        if (selection == (listNum + 1)) {
-            loop = false;
-
-        }
-    } while(loop);
+        } while (loop);
         System.out.println("Have a great day!");
-}
+    }
 }

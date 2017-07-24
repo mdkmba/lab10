@@ -10,7 +10,7 @@ public class UsedCar extends Car2 {
 //    private double priceM;
 protected double mileageM;
 
-    public UsedCar() {
+    public UsedCar() {      //!!!! look up use of "super" to bring in constructor values
         makeM = "";
         modelM = "";
         yearM = 0;
